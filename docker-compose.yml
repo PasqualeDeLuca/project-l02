@@ -1,0 +1,16 @@
+name: project-l02
+services:
+  postgres:
+    image: postgres:17
+    container_name: project-l02-postgres
+    environment:
+      POSTGRES_DB: project_l02_db
+      POSTGRES_USER: project_l02_user
+      POSTGRES_PASSWORD: project_l02_dev
+    ports:
+      - "5435:5432"
+    volumes:
+      - project_l02_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  project_l02_postgres_data:

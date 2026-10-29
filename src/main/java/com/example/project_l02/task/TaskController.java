@@ -1,6 +1,7 @@
 package com.example.project_l02.task;
 
 import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,12 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/tasks")
 public class TaskController {
 
+    private final TaskRepository taskRepository;
+
+    public TaskController(TaskRepository taskRepository)
+    {
+        this.taskRepository = taskRepository;
+    }
+
     @GetMapping
     public List<Task> getTasks() {
-        return List.of(
-            new Task(1L, "Studiare Java", true),
-            new Task(2L, "Imparare Spring Boot", false),
-            new Task(3L, "Creare una REST API", false)
-        );
+        return taskRepository.findAll();
     }
 }
+
